@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.entity.Student;
@@ -58,6 +59,13 @@ public class StudentService {
 		Pageable pageable = PageRequest.of(pageNo - 1, pageSize); // This is a zero based indexing. Hence we take 'pageNo-1'
 		return studentRepository.findAll(pageable).getContent();
 	}
+	
+	//select * from student order by first_name, last_name asc (or desc)
+	public List<Student> getAllStudentWithSorting() {
+		Sort sort = Sort.by(Sort.Direction.ASC, "firstName", "lastName");
+		return studentRepository.findAll(sort);
+	}
+	
 }
 
 

@@ -78,6 +78,11 @@ public class StudentController {
 	public List<Student> getAllWithPagination(@RequestParam int pageNo, @RequestParam int pageSize) {
 		return studentService.getAllWithPagination(pageNo, pageSize);
 	}
+	
+	@GetMapping("getAllWithSorting")
+	public List<Student> getAllStudentWithSorting() {
+		return studentService.getAllStudentWithSorting();
+	}
 	 
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)
