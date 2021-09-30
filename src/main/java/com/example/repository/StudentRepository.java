@@ -19,4 +19,10 @@ public interface StudentRepository extends JpaRepository<Student, Integer>{
 	
 	//In Query - To apply OR condition with multiple values
 	List<Student> findByFirstNameIn(List<String> firstNames);
-}
+	
+	//Like Query
+	List<Student> findByFirstNameContains(String key);
+	
+	//Starts With
+	List<Student> findByFirstNameStartsWith(String key);
+} 

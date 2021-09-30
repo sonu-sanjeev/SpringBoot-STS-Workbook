@@ -83,6 +83,16 @@ public class StudentController {
 	public List<Student> getAllStudentWithSorting() {
 		return studentService.getAllStudentWithSorting();
 	}
+	
+	@GetMapping("like/{key}")
+	public List<Student> like(@PathVariable String key) {
+		return studentService.like(key);
+	}
+	
+	@GetMapping("startsWith/{key}")
+	public List<Student> startsWith(@PathVariable String key) {
+		return studentService.startsWith(key);
+	}
 	 
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)

@@ -66,6 +66,18 @@ public class StudentService {
 		return studentRepository.findAll(sort);
 	}
 	
+	//Like query
+	//select * from student where first_name like '%key%'
+	public List<Student> like(String key) {
+		return studentRepository.findByFirstNameContains(key);
+	}
+	
+	//StartsWith query
+	//select * from student where first_name like 'key%'
+	public List<Student> startsWith(String key) {
+		return studentRepository.findByFirstNameStartsWith(key);
+	}
+	
 }
 
 

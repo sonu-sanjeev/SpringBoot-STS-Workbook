@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.example.request.StudentRequest;
 
@@ -35,10 +36,14 @@ public class Student {
 	@Column(name = "email")
 	private String email;
 	
+	@Transient // We need to add this when the corresponding field is not a column in the 'student' table.
+	private String schoolName = "MySchool";
+	
 	public Student(StudentRequest studentRequest) {
 		this.firstName = studentRequest.getFirstName();
 		this.lastName = studentRequest.getLastName();
 		this.email = studentRequest.getEmail();
 	}
 
+	
 }
