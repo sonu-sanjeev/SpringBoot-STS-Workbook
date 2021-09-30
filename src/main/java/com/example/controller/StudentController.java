@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.repository.query.Param;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -93,6 +94,22 @@ public class StudentController {
 	public List<Student> startsWith(@PathVariable String key) {
 		return studentService.startsWith(key);
 	}
+	
+	@GetMapping("get/{firstName}/{lastName}")
+	public Student getByLastNameAndFirstName(@PathVariable String firstName, @PathVariable String lastName) {
+		return studentService.getByLastNameAndFirstName(lastName, firstName);
+	}
+	
+	@PutMapping("updateEmail")
+	public String updateEmail(@RequestParam("id") Integer primaryKey, @RequestParam String email) {
+		return studentService.updateEmailWithJpql(email, primaryKey) + " Student(s) updated.";
+	}
+	
+	@DeleteMapping("deleteStudentWithEmail/{email}")
+	public String deleteStudentWithEmail(@PathVariable String email) {
+		return studentService.deleteStudentWithEmail(email) + " Student(s) deleted.";
+	}
+	
 	 
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)

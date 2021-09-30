@@ -78,6 +78,17 @@ public class StudentService {
 		return studentRepository.findByFirstNameStartsWith(key);
 	}
 	
+	public Student getByLastNameAndFirstName(String lastName, String firstName) {
+		return studentRepository.getByLastNameAndFirstName(firstName, lastName);
+	}
+	
+	public Integer updateEmailWithJpql(String email, Integer id) {
+		return studentRepository.updateEmailWithJpql(email, id);
+	}
+	
+	public Integer deleteStudentWithEmail(String email) {
+		return studentRepository.deleteByEmail(email);
+	}
 }
 
 
