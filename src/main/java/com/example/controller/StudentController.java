@@ -73,6 +73,11 @@ public class StudentController {
 	public List<Student> getByFirstNameIn(@RequestBody InQueryRequest inQueryRequest) {
 		return studentService.getByFirstNameIn(inQueryRequest);
 	}
+	
+	@GetMapping("getAllWithPagination")
+	public List<Student> getAllWithPagination(@RequestParam int pageNo, @RequestParam int pageSize) {
+		return studentService.getAllWithPagination(pageNo, pageSize);
+	}
 	 
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)
