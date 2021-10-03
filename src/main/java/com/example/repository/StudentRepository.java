@@ -34,6 +34,9 @@ public interface StudentRepository extends JpaRepository<Student, Integer>{
 	//Starts With
 	List<Student> findByFirstNameStartsWith(String key);
 	
+	//Join query using JPA method proxy
+	List<Student> findByAddressCity(String city);
+	
 	
 	/** 
 	 * Using JPQL queries. 
@@ -52,4 +55,7 @@ public interface StudentRepository extends JpaRepository<Student, Integer>{
 	@Transactional
 	@Query("Delete From Student where email = :email")
 	Integer deleteByEmail(String email);
+	
+	@Query("From Student where address.city = :city")
+	List<Student> getStudentsByCity(String city);
 } 

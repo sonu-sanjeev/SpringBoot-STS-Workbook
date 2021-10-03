@@ -110,6 +110,11 @@ public class StudentController {
 		return studentService.deleteStudentWithEmail(email) + " Student(s) deleted.";
 	}
 	
+	@GetMapping("getStudentsByCity/{city}")
+	public List<Student> getStudentsByCity(@PathVariable String city) {
+		//return studentService.getStudentsByCity(city);
+		return studentService.getStudentsByCityJpql(city);
+	}
 	 
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	@ExceptionHandler(MethodArgumentNotValidException.class)
